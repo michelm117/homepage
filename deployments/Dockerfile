@@ -8,7 +8,10 @@ WORKDIR /app
 COPY package.json yarn.lock ./
 
 # Install dependencies
-RUN yarn install
+RUN yarn install --frozen-lockfile
+
+# Set environment variable to disable telemetry
+ENV ASTRO_TELEMETRY_DISABLED=true
 
 # Copy the rest of the application code
 COPY . .
